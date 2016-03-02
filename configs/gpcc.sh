@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "host all gpmon samenet trust" >> /gpdata/master/gpseg-1/pg_hba.conf
 export MASTER_DATA_DIRECTORY=/gpdata/master/gpseg-1
 source /usr/local/greenplum-db/greenplum_path.sh
 source /usr/local/greenplum-cc-web/gpcc_path.sh
@@ -10,6 +9,8 @@ gpstart -a
 result=`psql -d gpadmin -t -c "select count(*) from (select 1 from pg_roles where rolname='gpmon')z"`
 if [ $result == 0 ]; then
   echo "Setting up GPCC"
+  echo "host all gpmon samenet trust" >> /gpdata/master/gpseg-1/pg_hba.conf
+  gpstop -u
   echo 'pivotal\npivotal\n'|createuser -s -l gpmon
   createdb gpperfmon
   source /usr/local/greenplum-cc-web/gpcc_path.sh 
