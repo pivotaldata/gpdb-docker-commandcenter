@@ -16,5 +16,5 @@ if [ $result == 0 ]; then
   /usr/local/greenplum-cc-web-2.0.0-build-32/bin/gpcmdr --setup --config_file /tmp/gpcmdr.conf
 fi
 
-# Start up GPCC Instance & Source GPWLM
+# Start up GPCC Instance
 /usr/local/greenplum-cc-web-2.0.0-build-32/bin/gpcmdr --start gpdb_docker
