@@ -1,5 +1,5 @@
 # gpdb-docker-commandcenter
-Pivotal Greenplum Database Command Center Docker Image (4.3.7.1)
+Pivotal Greenplum Database Command Center Docker Image (4.3.7.1) including Greenplum Workload Manager
 
 # Building the Docker Image
 You will need to download the Pivotal Command Center 2.0 installer (.zip) located at https://network.pivotal.io/products/pivotal-gpdb and place it inside the docker working directory.
