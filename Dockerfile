@@ -18,9 +18,7 @@ RUN     yum -y install crontabs \
         && unzip /tmp/greenplum-cc-web-2.0.0-build-32-RHEL5-x86_64.zip -d /tmp/ \
         && rm /tmp/greenplum-cc-web-2.0.0-build-32-RHEL5-x86_64.zip \
         && echo -e "yes\n\nyes\nyes\n" | /tmp/greenplum-cc-web-2.0.0-build-32-RHEL5-x86_64.bin \
-	&& rm /tmp/greenplum-cc-web-2.0.0-build-32-RHEL5-x86_64.bin \
-	&& su gpadmin -l -c "echo 'host all gpmon samenet trust' >> /gpdata/master/gpseg-1/pg_hba.conf" \
-        && su gpadmin -l -c "gpstop -a -u;echo -e 'pivotal\npivotal\n' | createuser -s -l -P gpmon"
+	&& rm /tmp/greenplum-cc-web-2.0.0-build-32-RHEL5-x86_64.bin
 
 #Set up environmentals
 EXPOSE 28080
@@ -29,4 +27,4 @@ VOLUME /gpdata
 CMD echo "127.0.0.1 $(cat ~/orig_hostname)" >> /etc/hosts \
         && service sshd start \
         && su gpadmin -l -c "/usr/local/bin/gpcc.sh" \
-        && /bin/bash
+	&& su gpadmin -l -c "source /home/gpadmin/gp-wlm/gp-wlm_path.sh;/bin/bash"
